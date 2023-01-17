@@ -1,0 +1,9 @@
+FROM centos:centos7.5.1804
+MAINTAINER Owen Niu <wss-net@qq.com>
+ENV  LANG en_US.UTF-8
+ENV LC_ALL en_US.UTF-8
+RUN curl -so /etc/yum.repos.d/Centos-7.repo http://mirrors.aliyun.com/repo/Centos-7.repo
+RUN yum install -y  python36 python3-devel gcc pcre-devel zlib-devel make net-tools
+RUN mkdir /apps/
+COPY nginx-1.13.7.tar.gz  /usr/local/src/
+RUN tar -zxf /usr/local/src/nginx-1.13.7.tar.gz -C /usr/local/src/   && cd /usr/local/src/nginx-1.13.7 && ./configure --prefix=/apps/nginx && make && make install && ln -s /apps/nginx/sbin/nginx /usr/bin/nginx && rm -rf /usr/local/src/nginx-1.13.7 /usr/local/src/nginx-1.13.7.tar.gz

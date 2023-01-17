@@ -1,0 +1,28 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: myblog
+spec:
+  rules:
+  - host: myblog.devops.cn
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: myblog
+          servicePort: 8002
+      
+  - host: myweb.devops.cn
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: myweb
+          servicePort: 8081
+
+#  tls:
+#    - hosts:
+#      - myblog.devops.cn
+#      secretName: https-secret
+
+

@@ -1,0 +1,8 @@
+FROM base/centos_python_nginx:v1
+MAINTAINER Owen Niu <wss-net@qq.com>
+WORKDIR /apps/myblog
+COPY python-demo/ .
+RUN cp myblog.conf /apps/nginx/conf/myblog.conf
+RUN pip3 install -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com -r requirements.txt
+RUN chmod +x run.sh && rm -rf ~/.cache/pip
+CMD ["./run.sh"]
